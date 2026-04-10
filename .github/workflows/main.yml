@@ -38,13 +38,13 @@ jobs:
       - name: Detect defconfig
         run: |
           echo "Listing configs:"
-          ls arch/arm/configs || true
+          ls arch/arm64/configs || true
 
-          if [ -f arch/arm/configs/vince_defconfig ]; then
+          if [ -f arch/arm64/configs/vince_defconfig ]; then
               echo "KERNEL_DEFCONFIG=vince_defconfig" >> $GITHUB_ENV
-          elif [ -f arch/arm/configs/msm8953_defconfig ]; then
+          elif [ -f arch/arm64/configs/msm8953_defconfig ]; then
               echo "KERNEL_DEFCONFIG=msm8953_defconfig" >> $GITHUB_ENV
-          elif [ -f arch/arm/configs/lineage_vince_defconfig ]; then
+          elif [ -f arch/arm64/configs/lineage_vince_defconfig ]; then
               echo "KERNEL_DEFCONFIG=lineage_vince_defconfig" >> $GITHUB_ENV
           else
               echo "ERROR: No valid defconfig found"
@@ -53,7 +53,7 @@ jobs:
 
       - name: Kernel defconfig
         run: |
-          make O=out ARCH=arm $KERNEL_DEFCONFIG
+          make O=out ARCH=arm64 $KERNEL_DEFCONFIG
 
       - name: Build kernel
         run: |
